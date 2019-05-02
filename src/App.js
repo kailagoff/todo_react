@@ -23,11 +23,21 @@ class App extends Component {
     ]
   }
 
+  //checkbox event method
+    markComplete = (id) => {
+      this.setState({todo: this.state.todo.map(task => {
+        if(task.id ===id) {
+          task.completed =!task.completed
+        }
+        return task;
+      }) });
+    }
+
   render() {
     return (
       <div className="App">
         <h1>To Do list</h1>
-        <Todo todo={this.state.todo} />
+        <Todo todo={this.state.todo} markComplete={this.markComplete} />
       </div>
     );
   }
