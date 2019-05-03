@@ -35,11 +35,13 @@ TodoTask.propTypes = {
 
 //css variable for button styling
 const btnStyle = {
-  background: 'red',
+  background: 'black',
   color: 'white',
   border: 'none',
   padding: '5px 10px',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  float: 'right',
+  borderRadius: '30%'
 }
 
 export default TodoTask
