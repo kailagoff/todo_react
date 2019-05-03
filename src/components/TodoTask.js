@@ -21,6 +21,7 @@ getStyle = () => {
         <p>
           <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/> {' '}
           {title}
+          <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>x</button>
         </p>
       </div>
     )
@@ -32,9 +33,13 @@ TodoTask.propTypes = {
   task: PropTypes.object.isRequired
 }
 
-//css variables
-// const taskStyle = {
-//   backgroundColor: '#f4f4f4'
-// }
+//css variable for button styling
+const btnStyle = {
+  background: 'red',
+  color: 'white',
+  border: 'none',
+  padding: '5px 10px',
+  cursor: 'pointer'
+}
 
 export default TodoTask
