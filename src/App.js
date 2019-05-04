@@ -5,28 +5,19 @@ import Header from './components/layout/header'
 import Todo from './components/Todo';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
-import uuid from 'uuid';
+// import uuid from 'uuid';
+import axios from 'axios';
+
 
 class App extends Component {
   state = {
-    todo: [
-      {
-        id: uuid.v4(),
-        title: 'Take out the trash',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Mow the grass',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Party',
-        completed: false
-      }
-    ]
+    todo: []
   }
+
+componentDidMount() {
+  axios.get('https://jsonplaceholder.typicode.com/todos?_limit=7')
+    .then(res => this.setState({ todo: res.data}))
+}
 
   //checkbox event method
     markComplete = (id) => {
@@ -45,12 +36,11 @@ class App extends Component {
   }
 // add new task
   addTodo = (title) => {
-    const newTask = {
-      id: uuid.v4(),
-      title: title,
-      completed: false,
-    }
-    this.setState({ todo: [...this.state.todo, newTask]})
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
+      title,
+      completed: false
+    })
+      .then(res => this.setState({ todo: [...this.state.todo, res.data] }));
   }
 
   render() {
